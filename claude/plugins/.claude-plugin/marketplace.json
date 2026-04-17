@@ -14,7 +14,7 @@
         "name": "Greg Polumbo",
         "email": "gpolumbo@gmail.com"
       },
-      "source": "./plugins/claudit",
+      "source": "./claudit",
       "category": "productivity"
     }
   ]
