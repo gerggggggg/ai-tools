@@ -2,6 +2,8 @@
   "name": "permission-reviewer",
   "version": "1.0.0",
   "description": "LLM-delegated PermissionRequest hook for Claude Code. Delegates allow/deny decisions to a configurable LLM harness (Codex, Claude, or custom) rather than trusting Claude Code's native dialog alone.",
-  "author": "Greg Polumbo",
+  "author": {
+    "name": "Greg Polumbo"
+  },
   "keywords": ["permissions", "security", "hooks", "codex", "permission-review"]
 }
