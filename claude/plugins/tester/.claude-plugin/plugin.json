@@ -1,0 +1,10 @@
+{
+  "name": "tester",
+  "version": "0.1.0",
+  "description": "Expert testing coach and executor. Enforces red/green TDD, proper test pyramid shape, DI and testability design principles, behavioral naming, and actionable failure messages.",
+  "author": {
+    "name": "Greg Polumbo"
+  },
+  "license": "GPL-3.0-or-later",
+  "keywords": ["testing", "tdd", "unit-tests", "test-pyramid", "dependency-injection", "red-green"]
+}

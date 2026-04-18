@@ -51,6 +51,22 @@ Allow if the action does not trigger any hard deny above and is one of:
 - Editing or writing source files under the project directory
 - Running local dev servers
 - Invoking `/opt/homebrew/bin/codex exec` for legitimate tasks
+- Edits to `~/.claude/settings.json` that **only** modify `enabledPlugins`, `extraKnownMarketplaces`, `pluginConfigs`, or other non-permission sections — these are plugin/feature configuration, not permission escalations
+
+### Settings file distinction (important)
+
+Edits to `~/.claude/settings.json` require nuanced judgment — do NOT blanket-deny them:
+
+**Allow** changes that only affect:
+- `enabledPlugins` — enabling or disabling plugins
+- `extraKnownMarketplaces` — registering plugin sources
+- `pluginConfigs` — per-plugin settings
+- `model`, `language`, `theme`, `env`, or other non-permission fields
+
+**Deny** changes that:
+- Add entries to `permissions.allow` (broadens what Claude can do without asking)
+- Remove entries from `permissions.deny` (removes a guard)
+- Set `permissions.defaultMode` to `bypassPermissions`, `dontAsk`, or `auto`
 
 ### Default
 
