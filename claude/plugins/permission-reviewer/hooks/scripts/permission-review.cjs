@@ -7,9 +7,8 @@
  *
  * Security contract:
  *   - On harness ALLOW  → emit allow JSON; Claude Code proceeds silently.
- *   - On harness DENY   → emit empty body (exit 0, no hookSpecificOutput);
- *                         Claude Code falls through to its native permission
- *                         dialog so the user can see the reason and override.
+ *   - On harness DENY   → hard-deny with reviewer's reason; Claude Code shows
+ *                         the denial message — no interactive dialog is shown.
  *   - On hook ERROR     → hard-deny immediately; a broken hook must never
  *                         become a pass-through.
  *   - All deny/error paths write a diagnostic line to stderr.
@@ -232,7 +231,7 @@ async function main() {
   if (decision.behavior === "allow") {
     allow(decision.message);
   } else {
-    escalateToDialog(decision.message ?? "Denied by automated reviewer.");
+    hardDeny(decision.message ?? "Denied by automated reviewer.");
   }
 }
 

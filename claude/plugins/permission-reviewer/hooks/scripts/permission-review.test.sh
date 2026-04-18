@@ -198,13 +198,13 @@ run_test "harness allow Write → silent allow" \
 
 # ── Deny path (harness denied → escalate to native dialog) ───────────────────
 
-run_test "harness deny → escalate to dialog" \
-  "$RM_PAYLOAD" "dialog" \
+run_test "harness deny → hard deny" \
+  "$RM_PAYLOAD" "deny" \
   "$(ndjson_deny 'destructive operation')"
 
-# Deny with no reason — still escalates.
-run_test "harness deny no reason → escalate to dialog" \
-  "$RM_PAYLOAD" "dialog" \
+# Deny with no reason — still hard-denies.
+run_test "harness deny no reason → hard deny" \
+  "$RM_PAYLOAD" "deny" \
   '{"type":"item.completed","item":{"type":"agent_message","text":"{\"decision\":\"deny\"}"}}'
 
 # ── Multi-line NDJSON (realistic Codex output format) ────────────────────────
@@ -213,8 +213,8 @@ run_test "multi-line NDJSON → allow" \
   "$BASH_PAYLOAD" "allow" \
   "$(ndjson_full_allow 'safe git command')"
 
-run_test "multi-line NDJSON → dialog" \
-  "$RM_PAYLOAD" "dialog" \
+run_test "multi-line NDJSON → hard deny" \
+  "$RM_PAYLOAD" "deny" \
   "$(ndjson_full_deny 'credential access')"
 
 # ── Summary ───────────────────────────────────────────────────────────────────

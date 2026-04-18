@@ -21,7 +21,7 @@ permission-review.cjs
        ├─ Normalizes + validates response
        │
        ├─ ALLOW  → emit allow JSON → Claude Code proceeds silently
-       └─ DENY   → emit {} → Claude Code shows native dialog (user can override)
+       └─ DENY   → hard-deny with reviewer reason → Claude Code shows denial message
 ```
 
 Error on any step → hard deny immediately; a broken hook never becomes a pass-through.
@@ -118,5 +118,5 @@ To test with a real harness, trigger a `Bash` or `Edit` call in Claude Code that
 
 - The normalizer whitelists only `decision` and `reason` fields — `updatedPermissions`, `updatedInput`, and other injection vectors are stripped before validation.
 - Timeout, ENOENT, and non-zero exit from the harness all hard-deny.
-- Deny escalates to Claude Code's native dialog (user can override); it does **not** hard-block.
+- Deny hard-blocks with the reviewer's reason message; no interactive dialog is shown.
 - Hard deny on hook errors means a misconfigured plugin fails closed, not open.
