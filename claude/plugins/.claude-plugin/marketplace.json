@@ -3,16 +3,14 @@
   "name": "ai-tools-local",
   "description": "Greg Polumbo's local Claude plugins",
   "owner": {
-    "name": "Greg Polumbo",
-    "email": "gpolumbo@gmail.com"
+    "name": "Greg Polumbo"
   },
   "plugins": [
     {
       "name": "claudit",
       "description": "Audit your Claude Code configuration against best practices. Reviews CLAUDE.md files, settings, skills, agents, hooks, memory, and permissions. Includes drift detection and an interactive fixer/optimizer agent.",
       "author": {
-        "name": "Greg Polumbo",
-        "email": "gpolumbo@gmail.com"
+        "name": "Greg Polumbo"
       },
       "source": "./claudit",
       "category": "productivity"

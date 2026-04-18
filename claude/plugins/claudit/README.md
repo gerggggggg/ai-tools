@@ -4,55 +4,62 @@ A Claude Code plugin that audits your Claude Code configuration against best pra
 
 ## What it does
 
-Run `/claudit` to get a structured audit of your Claude Code setup covering:
+Run `/claudit` to get a structured audit of your Claude Code setup. It reads your full config, cross-references current best practices from the Anthropic docs, and produces a scored report with concrete action items.
 
-- **CLAUDE.md attention budget** — redundant, duplicate, and stale instructions
-- **Token usage & cost** — always-loaded context, skill description bloat, model allocation
-- **Custom skill quality** — triggering accuracy, body efficiency, model targeting (uses `skill-creator` if installed)
-- **Agents** — model selection, role clarity, reference loading
-- **Hooks** — automation gaps, safety gates, efficiency
-- **Permissions** — allow/ask/deny hygiene and security posture
-- **Memory** — coverage, freshness, token ROI
-- **MCP servers** — installed vs. missing high-value integrations
-- **What's new / what's stale** — capabilities to adopt and patterns to retire
+**Areas covered:**
 
-The audit ends with a numbered **Action Items table** you can hand directly to the `fixer` agent.
+| Area | What gets checked |
+|------|-------------------|
+| CLAUDE.md | Redundant, duplicate, and stale instructions |
+| Token usage & cost | Always-loaded context, skill description bloat, model allocation |
+| Skills | Triggering accuracy, body efficiency, model targeting |
+| Agents | Model selection, role clarity, reference loading |
+| Hooks | Automation gaps, safety gates, efficiency |
+| Permissions | Allow/ask/deny hygiene and security posture |
+| Memory | Coverage, freshness, token ROI |
+| MCP servers | Installed vs. missing high-value integrations |
+| What's new / stale | Capabilities to adopt and patterns to retire |
+
+The audit ends with a numbered **Action Items table** you hand directly to the `fixer` agent.
 
 ## Components
 
 ### `/claudit` skill
-The main audit. Starts by running `/insights` for usage data, reads your full config, researches current best practices, and produces a structured report with a numbered Action Items table.
 
-### `fixer` / `optimizer` agent
+The main audit command. Kicks off by running `/insights` for usage data, reads your full config, fetches current best practices, and outputs a structured report.
+
+### `fixer` agent (also: `optimizer`)
+
 Implements audit recommendations. After the audit, tell it which items to act on:
 
 ```
 fixer: do 1, 3, 5 / skip 2 / discuss 4 and 7
 ```
 
-or
-
 ```
 optimizer do all quick wins
 ```
 
-The fixer only touches config files (`.claude/` hierarchy and plugin directories). It never edits source code and always confirms before deleting anything.
+The fixer only touches config files (`.claude/` and plugin directories). It never edits source code and always confirms before deleting anything.
 
 ### Drift detection hook
-A `SessionStart` hook that compares your current config against a baseline snapshot saved after each audit. If your config has changed substantially or the audit is more than 30 days old, it prints a one-line reminder. Silent otherwise.
+
+A `SessionStart` hook that compares your current config against a snapshot saved after the last audit. If your config has drifted substantially or the audit is stale, it prints a one-line reminder. Silent otherwise.
 
 Drift thresholds:
 - > 30 days since last audit → reminder
-- > 40% metric drift (any time) → warning
-- > 20% drift + > 15 days → suggestion
+- > 40% metric change (any time) → warning
+- > 20% change + > 15 days → suggestion
 
 ## Installation
 
 ```bash
-claude plugin install ~/projects/ai-tools/claude/plugins/claudit
-```
+# Add the marketplace (one-time setup)
+claude plugin marketplace add ~/projects/ai-tools/claude/plugins
 
-Or from a marketplace if published there.
+# Install the plugin
+claude plugin install claudit
+```
 
 ## Usage
 
@@ -60,11 +67,18 @@ Or from a marketplace if published there.
 /claudit
 ```
 
-Then follow the prompts. When the Action Items table appears, invoke the fixer:
+When the Action Items table appears, hand it to the fixer:
 
 ```
-fixer: do 1 2 4, skip 3, discuss 5
+fixer: do 1, 3, 5 / skip 2 / discuss 4
 ```
+
+### When to run
+
+- After a new Claude model release — assumptions about model behavior may be stale
+- Quarterly, as a hygiene check
+- When cost or performance feels off
+- When onboarding to a new project or machine
 
 ## License
 
@@ -72,4 +86,4 @@ GNU General Public License v3.0 or later — see [LICENSE](LICENSE).
 
 ## Author
 
-Greg Polumbo — gpolumbo@gmail.com
+[Greg Polumbo](https://github.com/gerggggggg)

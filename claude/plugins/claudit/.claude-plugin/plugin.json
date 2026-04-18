@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Audit your Claude Code configuration against best practices. Reviews CLAUDE.md files, settings, skills, agents, hooks, memory, and permissions for optimization opportunities, with drift detection and an interactive fixer agent.",
   "author": {
-    "name": "Greg Polumbo",
-    "email": "gpolumbo@gmail.com"
+    "name": "Greg Polumbo"
   },
   "license": "GPL-3.0-or-later",
   "keywords": ["audit", "configuration", "optimization", "tokens", "cost", "claude-code"]
