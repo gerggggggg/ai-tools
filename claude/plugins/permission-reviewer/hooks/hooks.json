@@ -1,0 +1,17 @@
+{
+  "description": "PermissionRequest hook — delegates allow/deny to a configurable LLM harness",
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/permission-review.cjs",
+            "timeout": 35
+          }
+        ]
+      }
+    ]
+  }
+}

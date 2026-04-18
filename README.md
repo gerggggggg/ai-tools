@@ -11,6 +11,7 @@ Claude Code plugins, each installable independently.
 | Plugin | What it does |
 |--------|-------------|
 | [claudit](claude/plugins/claudit/) | Audits your Claude Code configuration against best practices and helps you act on the findings |
+| [permission-reviewer](claude/plugins/permission-reviewer/) | Delegates `PermissionRequest` hook decisions to a second LLM — silently approves routine dev operations, escalates suspicious ones to the native dialog |
 
 ## Using the plugins
 
