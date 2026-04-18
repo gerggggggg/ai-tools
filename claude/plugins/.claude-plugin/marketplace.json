@@ -16,6 +16,15 @@
       "category": "productivity"
     },
     {
+      "name": "tester",
+      "description": "Expert testing coach and executor. Enforces red/green TDD, test pyramid shape, dependency injection and testability design, behavioral naming, and actionable failure messages — across any language or framework.",
+      "author": {
+        "name": "Greg Polumbo"
+      },
+      "source": "./tester",
+      "category": "productivity"
+    },
+    {
       "name": "permission-reviewer",
       "description": "LLM-delegated PermissionRequest hook for Claude Code. Silently approves routine dev operations and escalates suspicious ones (credential access, sudo, remote pipe-to-shell) to the native dialog. Supports Codex, Claude, and custom harness adapters.",
       "author": {
