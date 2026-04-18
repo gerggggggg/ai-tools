@@ -99,32 +99,58 @@ Collect findings per skill: name, issues found, recommended changes, estimated t
 
 ### Step 3: Research Current Best Practices
 
-Fetch the latest guidance from authoritative sources. Use WebFetch/WebSearch to check:
+Fetch the latest guidance from authoritative sources. Run these searches in parallel where possible — the goal is to surface anything published in the last 60–90 days that's relevant to coding agent and harness optimization.
 
-1. **Claude official blog** — `claude.com/blog` and `docs.anthropic.com` for latest recommendations on:
-   - Prompt engineering and system prompt design
-   - Tool use patterns and best practices
-   - Agent architecture (subagents, delegation, orchestration)
-   - Context management (compaction, memory, progressive disclosure)
-   - Cost optimization (caching, model routing, token efficiency)
-   - Hooks and automation patterns
-   - MCP server ecosystem and recommended servers
+#### 3a. Official model and platform documentation
 
-2. **Anthropic documentation** — `docs.anthropic.com` for:
-   - Latest model capabilities and what's changed
-   - New Claude Code features, settings, or configuration options
-   - Deprecations or retired patterns
+- **Anthropic docs** — `docs.anthropic.com/en/docs/about-claude/models` for current model IDs, capabilities, and deprecations
+- **Claude Code docs** — `docs.anthropic.com/en/docs/claude-code` for new features, settings, hooks, and slash commands
+- **Anthropic blog** — WebSearch `site:anthropic.com/research OR site:anthropic.com/news` for recent releases and guidance
 
-3. **Community and ecosystem** — Search for recent high-signal content on:
-   - New MCP servers that are high-value, low-cost, and secure
-   - Emerging patterns for agent orchestration and skill design
-   - Hook patterns that other teams have found effective
-   - Cost optimization strategies that maintain quality
+#### 3b. Competing model providers (for cross-pollinating ideas)
 
-When researching, prioritize:
-- **Official Anthropic sources** (highest trust)
-- **Established AI research outlets** (Simon Willison, Latent Space, etc.)
-- **Claude Code community** (GitHub discussions, official examples)
+Search recent posts from:
+- **OpenAI** — `openai.com/blog` — agent patterns, tool use, structured outputs
+- **Google DeepMind** — `deepmind.google/discover/blog` — Gemini agent patterns, long-context strategies
+- **Mistral / Cohere / Together** — search for recent agent harness or prompt engineering posts
+
+Look for patterns that are model-agnostic and applicable to Claude Code: context structuring, tool use discipline, agent orchestration, cost reduction.
+
+#### 3c. High-signal independent blogs and newsletters
+
+WebSearch or WebFetch recent posts from:
+- **Simon Willison** — `simonwillison.net` — prolific writer on LLM tooling, agent patterns, prompt engineering
+- **Latent Space** — `latent.space` — deep technical podcasts and write-ups on agent frameworks
+- **The Pragmatic Engineer** — `newsletter.pragmaticengineer.com` — engineering teams adopting AI coding tools
+- **Hamel Husain** — `hamel.dev` — practical LLM ops and evaluation
+- **Eugene Yan** — `eugeneyan.com` — applied ML, agent evaluation, RAG patterns
+- **Swyx / Alessio** — search `swyx.io` and recent Latent Space episodes
+- **LangChain blog** — `blog.langchain.dev` — agent orchestration patterns, even if not LangChain-specific
+
+Search query to use: `"coding agent" OR "AI coding assistant" OR "Claude Code" optimization tips best practices` — filter results to the past 90 days
+
+#### 3d. Community and ecosystem
+
+- **Claude Code GitHub discussions** — search for recent threads on hooks, skills, MCP, and agent patterns
+- **Hacker News** — WebSearch `site:news.ycombinator.com claude code OR coding agent harness` for high-voted recent threads
+- **Reddit r/ClaudeAI and r/LocalLLaMA** — search for recent tips on Claude Code setup and agent configuration
+- **MCP server registry** — check `github.com/modelcontextprotocol/servers` for new high-value servers added recently
+
+#### 3e. Synthesize findings
+
+After fetching, extract only what's actionable for this specific user's setup. For each finding, note:
+- **Source** and publication date
+- **What the recommendation is**
+- **Whether it applies** to the user's current config (and why)
+- **Which audit area** it affects (A–J from the checklist)
+
+Discard findings that are speculative, vendor-marketing-heavy, or not applicable to Claude Code specifically. Flag the top 3–5 highest-signal findings for inclusion in the "What's New — Try These" section of the report.
+
+When researching, trust hierarchy:
+1. **Official Anthropic sources** — ground truth for Claude behavior and Claude Code features
+2. **Independent technical writers** (Willison, Husain, Yan) — high signal, practical focus
+3. **Other model providers** — useful for patterns, not for Claude-specific claims
+4. **Community** — useful for real-world friction and workarounds, verify before recommending
 
 Flag anything that contradicts the user's current setup or suggests a pattern worth adopting.
 
