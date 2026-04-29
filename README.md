@@ -27,6 +27,12 @@ Then install any plugin by name:
 claude plugin install claudit
 ```
 
+## Resources
+Some additional AI tools, resources, GitHub accounts that are helpful:
+
+- https://github.com/mattpocock/skills - https://www.youtube.com/watch?v=v4F1gFy-hqg
+- https://github.com/simonw/tools
+
 ## Author
 
 [Greg Polumbo](https://github.com/gerggggggg)
